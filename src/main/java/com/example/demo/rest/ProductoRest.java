@@ -37,8 +37,6 @@ public class ProductoRest {
     @Autowired
     CategoriaService cser;
 
-    NorteXploradores nexp = new NorteXploradores();
-
     @GetMapping
     public ResponseEntity<List<Producto>> getProducto() {
         return ResponseEntity.ok(pser.listar());
