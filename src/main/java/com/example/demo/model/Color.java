@@ -74,8 +74,7 @@ public class Color implements Serializable {
         this.nombre = nombre;
     }
 
-    @XmlTransient
-    public Collection<Producto> getProductoCollection() {
+    public Collection<Producto> productoCollection() {
         return productoCollection;
     }
 

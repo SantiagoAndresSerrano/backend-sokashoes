@@ -82,8 +82,7 @@ public class Compra implements Serializable {
         this.usuario = usuario;
     }
 
-    @XmlTransient
-    public Collection<Transaccionp> getTransaccionpCollection() {
+    public Collection<Transaccionp> transaccionpCollection() {
         return transaccionpCollection;
     }
 
@@ -91,8 +90,7 @@ public class Compra implements Serializable {
         this.transaccionpCollection = transaccionpCollection;
     }
 
-    @XmlTransient
-    public Collection<DetalleCompra> getDetalleCompraCollection() {
+    public Collection<DetalleCompra> detalleCompraCollection() {
         return detalleCompraCollection;
     }
 

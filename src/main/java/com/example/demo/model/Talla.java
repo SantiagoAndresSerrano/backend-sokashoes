@@ -88,8 +88,7 @@ public class Talla implements Serializable {
         this.numero = numero;
     }
 
-    @XmlTransient
-    public Collection<Producto> getProductoCollection() {
+    public Collection<Producto> productoCollection() {
         return productoCollection;
     }
 

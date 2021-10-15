@@ -80,8 +80,7 @@ public class TipoIdentificacion implements Serializable {
         this.tipo = tipo;
     }
 
-    @XmlTransient
-    public Collection<Persona> getPersonaCollection() {
+    public Collection<Persona> personaCollection() {
         return personaCollection;
     }
 

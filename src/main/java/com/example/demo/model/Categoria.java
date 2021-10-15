@@ -81,8 +81,7 @@ public class Categoria implements Serializable {
         this.descripcion = descripcion;
     }
 
-    @XmlTransient
-    public Collection<Producto> getProductoCollection() {
+    public Collection<Producto> productoCollection() {
         return productoCollection;
     }
 

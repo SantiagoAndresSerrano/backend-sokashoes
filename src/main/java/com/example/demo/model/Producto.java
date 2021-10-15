@@ -107,8 +107,7 @@ public class Producto implements Serializable {
         this.marca = marca;
     }
 
-    @XmlTransient
-    public Collection<Color> getColorCollection() {
+    public Collection<Color> colorCollection() {
         return colorCollection;
     }
 
@@ -116,8 +115,7 @@ public class Producto implements Serializable {
         this.colorCollection = colorCollection;
     }
 
-    @XmlTransient
-    public Collection<Talla> getTallaCollection() {
+    public Collection<Talla> tallaCollection() {
         return tallaCollection;
     }
 
@@ -133,8 +131,7 @@ public class Producto implements Serializable {
         this.categoria = categoria;
     }
 
-    @XmlTransient
-    public Collection<DetalleCompra> getDetalleCompraCollection() {
+    public Collection<DetalleCompra> detalleCompraCollection() {
         return detalleCompraCollection;
     }
 
