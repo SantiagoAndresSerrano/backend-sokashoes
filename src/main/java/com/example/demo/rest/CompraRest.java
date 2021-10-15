@@ -32,7 +32,7 @@ public class CompraRest {
     }
 
     @GetMapping(path = "/{id}/transacciones")
-    public ResponseEntity<List<Transaccionp>> transaccionPorCompra(@PathVariable Integer id) {
+    public ResponseEntity<List<Transaccionp>> transaccionPorCompra(@PathVariable Long id) {
 
         return ResponseEntity.ok((List)cser.encontrar(id).get());
     }

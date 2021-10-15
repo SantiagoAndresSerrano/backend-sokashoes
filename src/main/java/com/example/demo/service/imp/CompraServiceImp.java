@@ -34,7 +34,7 @@ public class CompraServiceImp implements CompraService {
 
     @Override
     @Transactional(readOnly = true )
-    public Optional<Compra> encontrar(int id) {
+    public Optional<Compra> encontrar(Long id) {
         return cDAO.findById(id);
     }
 

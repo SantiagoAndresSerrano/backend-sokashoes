@@ -10,6 +10,8 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
@@ -22,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author santi
+ * @author GenesisDanielaVJ
  */
 @Entity
 @Table(name = "talla")
@@ -30,18 +32,23 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Talla.findAll", query = "SELECT t FROM Talla t"),
     @NamedQuery(name = "Talla.findByIdTalla", query = "SELECT t FROM Talla t WHERE t.idTalla = :idTalla"),
-    @NamedQuery(name = "Talla.findByNombre", query = "SELECT t FROM Talla t WHERE t.nombre = :nombre")})
+    @NamedQuery(name = "Talla.findByNombre", query = "SELECT t FROM Talla t WHERE t.nombre = :nombre"),
+    @NamedQuery(name = "Talla.findByNumero", query = "SELECT t FROM Talla t WHERE t.numero = :numero")})
 public class Talla implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id_talla")
     private Integer idTalla;
     @Size(max = 25)
     @Column(name = "nombre")
     private String nombre;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "numero")
+    private short numero;
     @ManyToMany(mappedBy = "tallaCollection")
     private Collection<Producto> productoCollection;
 
@@ -50,6 +57,11 @@ public class Talla implements Serializable {
 
     public Talla(Integer idTalla) {
         this.idTalla = idTalla;
+    }
+
+    public Talla(Integer idTalla, short numero) {
+        this.idTalla = idTalla;
+        this.numero = numero;
     }
 
     public Integer getIdTalla() {
@@ -66,6 +78,14 @@ public class Talla implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public short getNumero() {
+        return numero;
+    }
+
+    public void setNumero(short numero) {
+        this.numero = numero;
     }
 
     @XmlTransient

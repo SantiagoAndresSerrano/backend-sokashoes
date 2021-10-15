@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author santi
+ * @author GenesisDanielaVJ
  */
 @Entity
 @Table(name = "compra")
@@ -48,7 +48,7 @@ public class Compra implements Serializable {
     private Usuario usuario;
     @OneToMany(mappedBy = "referenceSale")
     private Collection<Transaccionp> transaccionpCollection;
-    @OneToMany(mappedBy = "idCompra")
+    @OneToMany(mappedBy = "compra")
     private Collection<DetalleCompra> detalleCompraCollection;
 
     public Compra() {

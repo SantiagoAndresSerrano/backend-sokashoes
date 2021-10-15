@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author santi
+ * @author GenesisDanielaVJ
  */
 @Entity
 @Table(name = "color")
@@ -39,8 +39,9 @@ public class Color implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "id_color")
-    private Integer idColor;
+    private String idColor;
     @Size(max = 25)
     @Column(name = "nombre")
     private String nombre;
@@ -53,15 +54,15 @@ public class Color implements Serializable {
     public Color() {
     }
 
-    public Color(Integer idColor) {
+    public Color(String idColor) {
         this.idColor = idColor;
     }
 
-    public Integer getIdColor() {
+    public String getIdColor() {
         return idColor;
     }
 
-    public void setIdColor(Integer idColor) {
+    public void setIdColor(String idColor) {
         this.idColor = idColor;
     }
 

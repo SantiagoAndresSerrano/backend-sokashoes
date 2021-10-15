@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author santi
+ * @author GenesisDanielaVJ
  */
 @Entity
 @Table(name = "tipo_identificacion")

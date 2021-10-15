@@ -17,6 +17,6 @@ import java.util.Optional;
 public interface CompraService {
     
     public void guardar(Compra compra);
-    public Optional<Compra> encontrar(int id);
+    public Optional<Compra> encontrar(Long id);
     public List<Compra> listar();
 }
