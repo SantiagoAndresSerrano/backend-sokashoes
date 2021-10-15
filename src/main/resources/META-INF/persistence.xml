@@ -8,26 +8,9 @@
     <class>com.example.demo.model.DetalleCompra</class>
     <class>com.example.demo.security.entity.Rol</class>
     <class>com.example.demo.model.Persona</class>
-    <class>com.example.demo.security.entity.Rol</class>
-    <class>com.example.demo.security.entity.Usuario</class>
     <class>com.example.demo.model.Categoria</class>
     <class>com.example.demo.model.Producto</class>
     <class>com.example.demo.model.Transaccionp</class>
-    <class>com.example.demo.model.Cargo</class>
-    <class>com.example.demo.model.Municipio</class>
-    <class>com.example.demo.model.Departamento</class>
-    <class>com.example.demo.model.Tour</class>
-    <class>com.example.demo.model.Empleado</class>
-    <class>com.example.demo.model.Transporte</class>
-    <class>com.example.demo.model.Paquete</class>
-    <class>com.example.demo.model.Ruta</class>
-    <class>com.example.demo.model.Seguro</class>
-    <class>com.example.demo.model.Actividad</class>
-    <class>com.example.demo.model.Alojamiento</class>
-    <class>com.example.demo.model.Empresa</class>
-    <class>com.example.demo.model.Rol</class>
-    <class>com.example.demo.model.Usuario</class>
-    <class>com.example.demo.model.ProductoTalla</class>
     <class>com.example.demo.model.Talla</class>
     <class>com.example.demo.model.Color</class>
     <properties>
