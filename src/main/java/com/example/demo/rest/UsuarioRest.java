@@ -17,14 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  *
@@ -46,46 +39,6 @@ public class UsuarioRest {
         return ResponseEntity.ok(user.listar());
     }
 
-    @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Usuario> eliminarUsuario(@PathVariable int id) {
-
-        Usuario u = user.encontrar(id).orElse(null);
-
-        user.eliminar(id);
-
-        return ResponseEntity.ok(u);
-    }
-
-
-  
-    @GetMapping(path = "/{id}/paquetes")
-    public ResponseEntity<List<Compra>> paquetesPorUsuario(@PathVariable int id){
-        return ResponseEntity.ok((List)user.encontrar(id).get().compraCollection());
-    }
-
-//    @GetMapping(path = "/{id}/paquetesComprados")
-//    public ResponseEntity<List<Compra>> paquetesCompradosPorUsuario(@PathVariable int id){
-//
-//        List<Compra> soloComprados = nexp.paquetesComprados((List)user.encontrar(id).get().compraCollection());
-//
-//        return ResponseEntity.ok(soloComprados);
-//    }
-
-
-
-    @GetMapping(path = "/{id}")
-    public ResponseEntity<?> encontrarUsuario(@PathVariable int id) {
-
-        Usuario u = user.encontrar(id).orElse(null);
-
-        if (u == null) {
-            //return new ResponseEntity<String>("El usuario con id: " + id + " no existe", HttpStatus.NOT_FOUND);
-            return new ResponseEntity<ObjectError>(new ObjectError("id","No existe el id"), HttpStatus.NOT_FOUND);
-        }
-
-        return ResponseEntity.ok(u);
-    }
-
     @PostMapping
     public ResponseEntity<?> guardar(@RequestBody @Valid Usuario u, BindingResult br) {
 
@@ -95,6 +48,46 @@ public class UsuarioRest {
         user.guardar(u);
         return ResponseEntity.ok(u);
     }
+
+    @PutMapping
+    public ResponseEntity<?> editar(@RequestBody @Valid Usuario u, BindingResult br){
+        if (br.hasErrors()) {
+            return new ResponseEntity<List<ObjectError>>(br.getAllErrors(), HttpStatus.BAD_REQUEST);
+        }
+        Usuario usuario = user.encontrar(u.getId_Usuario()).orElse(null);
+        if(usuario ==null){
+            return new ResponseEntity("Usuario no existe",HttpStatus.NOT_FOUND);
+        }
+        user.guardar(u);
+
+        return ResponseEntity.ok(user.encontrar(u.getId_Usuario()));
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Usuario> eliminarUsuario(@PathVariable int id) {
+
+        Usuario u = user.encontrar(id).orElse(null);
+        if(u == null){
+            return new ResponseEntity("El complemento no fue encontrado", HttpStatus.NOT_FOUND);
+        }
+        user.eliminar(id);
+
+        return ResponseEntity.ok(u);
+    }
+  
+//    @GetMapping(path = "/{id}/paquetes")
+//    public ResponseEntity<List<Compra>> paquetesPorUsuario(@PathVariable int id){
+//        return ResponseEntity.ok((List)user.encontrar(id).get().compraCollection());
+//    }
+
+//    @GetMapping(path = "/{id}/paquetesComprados")
+//    public ResponseEntity<List<Compra>> paquetesCompradosPorUsuario(@PathVariable int id){
+//
+//        List<Compra> soloComprados = nexp.paquetesComprados((List)user.encontrar(id).get().compraCollection());
+//
+//        return ResponseEntity.ok(soloComprados);
+//    }
+
     
     
 }

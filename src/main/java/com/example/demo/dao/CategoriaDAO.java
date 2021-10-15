@@ -5,12 +5,12 @@
  */
 package com.example.demo.dao;
 
-import com.example.demo.model.Compra;
+import com.example.demo.model.Categoria;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
- * @author Santi & Dani
+ * @author GenesisDanielaVJ
  */
-public interface CompraDAO extends JpaRepository<Compra, Long> {
+public interface CategoriaDAO extends JpaRepository<Categoria, Integer>{
 }
