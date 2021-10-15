@@ -48,7 +48,7 @@ public class Compra implements Serializable {
     private Usuario usuario;
     @OneToMany(mappedBy = "referenceSale")
     private Collection<Transaccionp> transaccionpCollection;
-    @OneToMany(mappedBy = "compra")
+    @OneToMany(mappedBy = "idCompra")
     private Collection<DetalleCompra> detalleCompraCollection;
 
     public Compra() {

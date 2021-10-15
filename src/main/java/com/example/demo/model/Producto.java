@@ -12,7 +12,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -34,9 +35,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Producto.findAll", query = "SELECT p FROM Producto p"),
     @NamedQuery(name = "Producto.findByIdProducto", query = "SELECT p FROM Producto p WHERE p.idProducto = :idProducto"),
     @NamedQuery(name = "Producto.findByModelo", query = "SELECT p FROM Producto p WHERE p.modelo = :modelo"),
-    @NamedQuery(name = "Producto.findByTalla", query = "SELECT p FROM Producto p WHERE p.talla = :talla"),
-    @NamedQuery(name = "Producto.findByRol", query = "SELECT p FROM Producto p WHERE p.rol = :rol"),
-    @NamedQuery(name = "Producto.findByColor", query = "SELECT p FROM Producto p WHERE p.color = :color"),
     @NamedQuery(name = "Producto.findByDescripcion", query = "SELECT p FROM Producto p WHERE p.descripcion = :descripcion"),
     @NamedQuery(name = "Producto.findByMarca", query = "SELECT p FROM Producto p WHERE p.marca = :marca")})
 public class Producto implements Serializable {
@@ -50,26 +48,19 @@ public class Producto implements Serializable {
     @Size(max = 25)
     @Column(name = "modelo")
     private String modelo;
-    @Size(max = 25)
-    @Column(name = "talla")
-    private String talla;
-    @Column(name = "rol")
-    private Integer rol;
-    @Size(max = 50)
-    @Column(name = "color")
-    private String color;
     @Size(max = 50)
     @Column(name = "descripcion")
     private String descripcion;
     @Size(max = 25)
     @Column(name = "marca")
     private String marca;
-    @Basic(optional = false)
-    @NotNull
-    @Lob
-    @Size(min = 1, max = 16777215)
-    @Column(name = "url_img")
-    private String urlImg;
+    @ManyToMany(mappedBy = "productoCollection")
+    private Collection<Color> colorCollection;
+    @JoinTable(name = "producto_talla", joinColumns = {
+        @JoinColumn(name = "id_producto", referencedColumnName = "id_producto")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_talla", referencedColumnName = "id_talla")})
+    @ManyToMany
+    private Collection<Talla> tallaCollection;
     @JoinColumn(name = "categoria", referencedColumnName = "id_categoria")
     @ManyToOne
     private Categoria categoria;
@@ -81,11 +72,6 @@ public class Producto implements Serializable {
 
     public Producto(Integer idProducto) {
         this.idProducto = idProducto;
-    }
-
-    public Producto(Integer idProducto, String urlImg) {
-        this.idProducto = idProducto;
-        this.urlImg = urlImg;
     }
 
     public Integer getIdProducto() {
@@ -104,30 +90,6 @@ public class Producto implements Serializable {
         this.modelo = modelo;
     }
 
-    public String getTalla() {
-        return talla;
-    }
-
-    public void setTalla(String talla) {
-        this.talla = talla;
-    }
-
-    public Integer getRol() {
-        return rol;
-    }
-
-    public void setRol(Integer rol) {
-        this.rol = rol;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
     public String getDescripcion() {
         return descripcion;
     }
@@ -144,12 +106,22 @@ public class Producto implements Serializable {
         this.marca = marca;
     }
 
-    public String getUrlImg() {
-        return urlImg;
+    @XmlTransient
+    public Collection<Color> getColorCollection() {
+        return colorCollection;
     }
 
-    public void setUrlImg(String urlImg) {
-        this.urlImg = urlImg;
+    public void setColorCollection(Collection<Color> colorCollection) {
+        this.colorCollection = colorCollection;
+    }
+
+    @XmlTransient
+    public Collection<Talla> getTallaCollection() {
+        return tallaCollection;
+    }
+
+    public void setTallaCollection(Collection<Talla> tallaCollection) {
+        this.tallaCollection = tallaCollection;
     }
 
     public Categoria getCategoria() {

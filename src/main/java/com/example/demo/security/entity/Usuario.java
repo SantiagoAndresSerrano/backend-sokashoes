@@ -7,7 +7,7 @@ package com.example.demo.security.entity;
 
 /**
  *
- * @author santi
+ * @author santi..
  */
 import com.example.demo.model.Compra;
 import com.example.demo.model.Persona;
@@ -29,7 +29,6 @@ public class Usuario {
     private String email;
     @NotNull
     private String password;
-
     @NotNull
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"),
@@ -48,7 +47,7 @@ public class Usuario {
         this.email = email;
         this.password = password;
     }
-    
+
     public Set<Rol> getRoles() {
         return roles;
     }
@@ -69,8 +68,6 @@ public class Usuario {
     public String toString() {
         return "com.example.demo.security.entity.Usuario[ idUsuario=" + id_Usuario + " ]";
     }
-
-
 
     public String getUsername() {
         return username;

@@ -43,9 +43,9 @@ public class DetalleCompra implements Serializable {
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
-    @JoinColumn(name = "compra", referencedColumnName = "id_compra")
+    @JoinColumn(name = "id_compra", referencedColumnName = "id_compra")
     @ManyToOne
-    private Compra compra;
+    private Compra idCompra;
     @JoinColumn(name = "producto", referencedColumnName = "id_producto")
     @ManyToOne
     private Producto producto;
@@ -73,12 +73,12 @@ public class DetalleCompra implements Serializable {
         this.fecha = fecha;
     }
 
-    public Compra getCompra() {
-        return compra;
+    public Compra getIdCompra() {
+        return idCompra;
     }
 
-    public void setCompra(Compra compra) {
-        this.compra = compra;
+    public void setIdCompra(Compra idCompra) {
+        this.idCompra = idCompra;
     }
 
     public Producto getProducto() {
