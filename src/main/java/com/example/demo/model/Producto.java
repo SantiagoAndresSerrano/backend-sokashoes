@@ -68,6 +68,8 @@ public class Producto implements Serializable {
     @JoinColumn(name = "categoria", referencedColumnName = "id_categoria")
     @ManyToOne
     private Categoria categoria;
+    @Column(name = "precio")
+    private int precio;
     @OneToMany(mappedBy = "producto")
     private Collection<DetalleCompra> detalleCompraCollection;
 
@@ -80,6 +82,14 @@ public class Producto implements Serializable {
 
     public Integer getIdProducto() {
         return idProducto;
+    }
+
+    public int getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
     }
 
     public void setIdProducto(Integer idProducto) {
