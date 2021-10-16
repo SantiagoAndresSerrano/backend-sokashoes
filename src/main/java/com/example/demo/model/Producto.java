@@ -40,12 +40,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Producto.findByMarca", query = "SELECT p FROM Producto p WHERE p.marca = :marca")})
 public class Producto implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id_producto")
-    private Integer idProducto;
     @Size(max = 25)
     @Column(name = "modelo")
     private String modelo;
@@ -55,6 +49,15 @@ public class Producto implements Serializable {
     @Size(max = 25)
     @Column(name = "marca")
     private String marca;
+    @OneToMany(mappedBy = "producto")
+    private Collection<Carrito> carritoCollection;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id_producto")
+    private Integer idProducto;
     @ManyToMany(mappedBy = "productoCollection")
     private Collection<Color> colorCollection;
     @JoinTable(name = "producto_talla", joinColumns = {
@@ -81,30 +84,6 @@ public class Producto implements Serializable {
 
     public void setIdProducto(Integer idProducto) {
         this.idProducto = idProducto;
-    }
-
-    public String getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public String getMarca() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
     }
 
     public Collection<Color> colorCollection() {
@@ -139,6 +118,38 @@ public class Producto implements Serializable {
         this.detalleCompraCollection = detalleCompraCollection;
     }
 
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public Collection<Carrito> carritoCollection() {
+        return carritoCollection;
+    }
+
+    public void setCarritoCollection(Collection<Carrito> carritoCollection) {
+        this.carritoCollection = carritoCollection;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -163,5 +174,5 @@ public class Producto implements Serializable {
     public String toString() {
         return "com.example.demo.model.Producto[ idProducto=" + idProducto + " ]";
     }
-    
+
 }

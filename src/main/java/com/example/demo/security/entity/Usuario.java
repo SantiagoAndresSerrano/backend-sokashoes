@@ -9,8 +9,8 @@ package com.example.demo.security.entity;
  *
  * @author santi..
  */
+import com.example.demo.model.Carrito;
 import com.example.demo.model.Compra;
-import com.example.demo.model.Persona;
 import java.util.Collection;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -36,8 +36,9 @@ public class Usuario {
     private Set<Rol> roles = new HashSet<>();
     @OneToMany(mappedBy = "usuario")
     private Collection<Compra> compraCollection;
+    @OneToMany(mappedBy = "usuario")
+    private Collection<Carrito> carritoCollection;
 
-    
     public Usuario() {
     }
 
@@ -62,11 +63,6 @@ public class Usuario {
 
     public void setId_Usuario(int id_Usuario) {
         this.id_Usuario = id_Usuario;
-    }
-
-    @Override
-    public String toString() {
-        return "com.example.demo.security.entity.Usuario[ idUsuario=" + id_Usuario + " ]";
     }
 
     public String getUsername() {
@@ -99,6 +95,18 @@ public class Usuario {
 
     public void setCompraCollection(Collection<Compra> compraCollection) {
         this.compraCollection = compraCollection;
+    }
+
+    public Collection<Carrito> carritoCollection() {
+        return carritoCollection;
+    }
+
+    public void setCarritoCollection(Collection<Carrito> carritoCollection) {
+        this.carritoCollection = carritoCollection;
+    }
+    @Override
+    public String toString() {
+        return "com.example.demo.security.entity.Usuario[ idUsuario=" + id_Usuario + " ]";
     }
 
 }

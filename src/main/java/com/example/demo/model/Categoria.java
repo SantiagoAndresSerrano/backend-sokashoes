@@ -35,12 +35,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Categoria.findByDescripcion", query = "SELECT c FROM Categoria c WHERE c.descripcion = :descripcion")})
 public class Categoria implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id_categoria")
-    private Integer idCategoria;
     @Size(max = 25)
     @Column(name = "nombre")
     private String nombre;
@@ -49,6 +43,13 @@ public class Categoria implements Serializable {
     private String descripcion;
     @OneToMany(mappedBy = "categoria")
     private Collection<Producto> productoCollection;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id_categoria")
+    private Integer idCategoria;
 
     public Categoria() {
     }
@@ -63,22 +64,6 @@ public class Categoria implements Serializable {
 
     public void setIdCategoria(Integer idCategoria) {
         this.idCategoria = idCategoria;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
     }
 
     public Collection<Producto> productoCollection() {
@@ -113,5 +98,22 @@ public class Categoria implements Serializable {
     public String toString() {
         return "com.example.demo.model.Categoria[ idCategoria=" + idCategoria + " ]";
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     
 }

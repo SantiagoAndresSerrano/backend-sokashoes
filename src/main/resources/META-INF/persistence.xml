@@ -13,6 +13,7 @@
     <class>com.example.demo.model.Transaccionp</class>
     <class>com.example.demo.model.Talla</class>
     <class>com.example.demo.model.Color</class>
+    <class>com.example.demo.model.Carrito</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/nortexploradores?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
