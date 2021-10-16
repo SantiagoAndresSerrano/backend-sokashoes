@@ -46,7 +46,7 @@ public class CarritoRest {
         cser.eliminar(id);
         return ResponseEntity.ok(carrito);
     }
-    
+
     @GetMapping(path = "/{id}")
         public ResponseEntity<?> encontrarCarrito(@PathVariable int id) {
         Carrito carrito = cser.encontrar(id).orElse(null);
@@ -62,6 +62,17 @@ public class CarritoRest {
             return new ResponseEntity<List<ObjectError>>(br.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
         cser.guardar(c);
+        return ResponseEntity.ok(c);
+    }
+
+    @PatchMapping(path = "/grupo")
+    public ResponseEntity<?> guardarTodos(@RequestBody @Valid Carrito c[], BindingResult br) {
+        if (br.hasErrors()) {
+            return new ResponseEntity<List<ObjectError>>(br.getAllErrors(), HttpStatus.BAD_REQUEST);
+        }
+        for(Carrito carrito: c)
+            cser.guardar(carrito);
+
         return ResponseEntity.ok(c);
     }
 

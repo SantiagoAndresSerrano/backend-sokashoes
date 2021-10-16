@@ -97,7 +97,7 @@ public class Usuario {
         this.compraCollection = compraCollection;
     }
 
-    public Collection<Carrito> getCarritoCollection() {
+    public Collection<Carrito> carritoCollection() {
         return carritoCollection;
     }
 

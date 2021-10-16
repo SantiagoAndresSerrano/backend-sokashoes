@@ -80,7 +80,7 @@ public class Carrito implements Serializable {
         this.producto = producto;
     }
 
-    public Usuario usuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 
