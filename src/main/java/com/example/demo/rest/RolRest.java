@@ -5,7 +5,6 @@
  */
 package com.example.demo.rest;
 
-import com.example.demo.security.entity.Usuario;
 import com.example.demo.security.entity.Rol;
 import com.example.demo.security.service.RolService;
 import java.util.List;
@@ -44,19 +43,14 @@ public class RolRest {
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Rol> eliminarRol(@PathVariable int id) {
-
         Rol r = rser.encontrar(id).orElse(null);
-
         rser.eliminar(id);
-
         return ResponseEntity.ok(r);
     }
     
     @GetMapping(path = "/{id}")
     public ResponseEntity<?> encontrarRol(@PathVariable int id) {
-
         Rol r = rser.encontrar(id).orElse(null);
-
         if (r == null) {
             return new ResponseEntity<ObjectError>(new ObjectError("id","No existe el id"), HttpStatus.NOT_FOUND);
         }
@@ -73,16 +67,5 @@ public class RolRest {
         rser.save(r);
         return ResponseEntity.ok(r);
     }
-    
-   /* @GetMapping(path = "/{id}/usuarios")
-    public ResponseEntity<?> usuariosPorRol(@PathVariable int id) {
-
-        List<Usuario> u = (List)(rser.encontrar(id).get().usuarioCollection());
-         if (u == null) {
-            return new ResponseEntity<ObjectError>(new ObjectError("id","No existe el id"), HttpStatus.NOT_FOUND);
-        }
-         
-        return ResponseEntity.ok(u);
-    }*/
     
 }

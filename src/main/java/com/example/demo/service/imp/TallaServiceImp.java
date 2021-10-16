@@ -5,41 +5,45 @@
  */
 package com.example.demo.service.imp;
 
-import com.example.demo.dao.DetalleCompraDAO;
-import com.example.demo.model.DetalleCompra;
-import com.example.demo.service.DetalleCompraService;
-import java.util.List;
-import java.util.Optional;
+import com.example.demo.dao.TallaDAO;
+import com.example.demo.model.Talla;
+import com.example.demo.service.TallaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Optional;
+
 /**
  *
- * @author Santi & Dani
+ * @author GenesisDanielaVJ
  */
 @Service
-public class DetalleCompraImp implements DetalleCompraService{
-    
+public class TallaServiceImp implements TallaService {
+
     @Autowired
-    DetalleCompraDAO dcDAO;
+    TallaDAO tDAO;
 
     @Override
     @Transactional
-    public void guardar(DetalleCompra detalleCompra) {
-        dcDAO.save(detalleCompra);
+    public void guardar(Talla talla) {
+        tDAO.save(talla);
     }
 
     @Override
     @Transactional(readOnly = true )
-    public Optional<DetalleCompra> encontrar(int id) {
-        return dcDAO.findById(id);
-    }
+    public Optional<Talla> encontrar(int id) { return tDAO.findById(id);}
 
     @Override
     @Transactional(readOnly = true)
-    public List<DetalleCompra> listar() {
-        return dcDAO.findAll();
+    public List<Talla> listar() {
+        return tDAO.findAll();
     }
-    
+
+    @Override
+    public void eliminar(int id) {
+        tDAO.deleteById(id);
+    }
+
 }

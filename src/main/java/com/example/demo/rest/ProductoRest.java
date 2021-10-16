@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  *
- * @author Santi & Dani
+ * @author GenesisDanielaVJ
  */
 @RestController
 @RequestMapping("/producto")
@@ -70,15 +70,22 @@ public class ProductoRest {
         return ResponseEntity.ok(pser.encontrar(p.getIdProducto()));
     }
 
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<?> encontrarProducto(@PathVariable int id) {
+        Producto p = pser.encontrar(id).orElse(null);
+        if (p == null) {
+            return new ResponseEntity<ObjectError>(new ObjectError("id","No existe el id"), HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(p);
+    }
+
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Producto> eliminarProducto(@PathVariable int id) {
-
         Producto p = pser.encontrar(id).orElse(null);
         if(p == null){
             return new ResponseEntity("El producto no fue encontrado", HttpStatus.NOT_FOUND);
         }
         pser.eliminar(id);
-
         return ResponseEntity.ok(p);
     }
 
