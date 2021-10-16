@@ -72,6 +72,9 @@ public class Producto implements Serializable {
     private int precio;
     @OneToMany(mappedBy = "producto")
     private Collection<DetalleCompra> detalleCompraCollection;
+    @Column(name = "url_img")
+    private String urlImg;
+
 
     public Producto() {
     }
@@ -82,6 +85,14 @@ public class Producto implements Serializable {
 
     public Integer getIdProducto() {
         return idProducto;
+    }
+
+    public String getUrlImg() {
+        return urlImg;
+    }
+
+    public void setUrlImg(String urlImg) {
+        this.urlImg = urlImg;
     }
 
     public int getPrecio() {
