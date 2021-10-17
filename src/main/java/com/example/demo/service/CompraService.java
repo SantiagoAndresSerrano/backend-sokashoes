@@ -18,5 +18,6 @@ public interface CompraService {
     
     public void guardar(Compra compra);
     public Optional<Compra> encontrar(Long id);
+    public void eliminar(Long id);
     public List<Compra> listar();
 }

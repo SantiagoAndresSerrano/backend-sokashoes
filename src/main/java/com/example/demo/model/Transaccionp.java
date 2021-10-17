@@ -92,7 +92,7 @@ public class Transaccionp implements Serializable {
     @Column(name = "currency")
     private String currency;
     @Column(name = "value")
-    private Integer value;
+    private Long value;
     @Size(max = 5)
     @Column(name = "billing_country")
     private String billingCountry;
@@ -222,11 +222,11 @@ public class Transaccionp implements Serializable {
         this.currency = currency;
     }
 
-    public Integer getValue() {
+    public Long getValue() {
         return value;
     }
 
-    public void setValue(Integer value) {
+    public void setValue(Long value) {
         this.value = value;
     }
 

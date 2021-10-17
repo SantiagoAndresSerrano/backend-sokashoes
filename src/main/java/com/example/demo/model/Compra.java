@@ -39,7 +39,7 @@ public class Compra implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_compra")
-    private Integer idCompra;
+    private Long idCompra;
     @Column(name = "total_compra")
     private Integer totalCompra;
     @JoinColumn(name = "usuario", referencedColumnName = "id_usuario")
@@ -53,15 +53,15 @@ public class Compra implements Serializable {
     public Compra() {
     }
 
-    public Compra(Integer idCompra) {
+    public Compra(Long idCompra) {
         this.idCompra = idCompra;
     }
 
-    public Integer getIdCompra() {
+    public Long getIdCompra() {
         return idCompra;
     }
 
-    public void setIdCompra(Integer idCompra) {
+    public void setIdCompra(Long idCompra) {
         this.idCompra = idCompra;
     }
 

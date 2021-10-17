@@ -11,6 +11,8 @@ import com.example.demo.model.Transaccionp;
 import com.example.demo.negocio.NorteXploradores;
 import com.example.demo.security.service.UsuarioService;
 import java.util.Map;
+
+import com.example.demo.service.CompraService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -39,7 +41,7 @@ import javax.servlet.http.HttpServletRequest;
         method = RequestMethod.POST,
         consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
         produces = {MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-@CrossOrigin(origins = {"http://50.56.9.170","http://198.61.156.98","http://190.216.203.233", "http://74.205.10.14"})
+@CrossOrigin(origins = "*")
 @Slf4j
 public class TransaccionRest {
   
@@ -48,6 +50,9 @@ public class TransaccionRest {
     
     @Autowired
     public UsuarioService user;
+
+    @Autowired
+    public CompraService compraService;
 
     NorteXploradores nexp = new NorteXploradores();
     
@@ -60,32 +65,40 @@ public class TransaccionRest {
     public ResponseEntity<?> pagoConfirmado(@RequestParam Map<String, String> body) {
         
 
-//         Transaccionp pay = new Transaccionp();
-//        pay.setAttempts(Short.parseShort(body.get("attempts")));
-//        pay.setBankId(Short.parseShort(body.get("bank_id")));
-//        pay.setBillingCountry((body.get("billing_country"))+"");
-//        pay.setCurrency(body.get("currency")+"");
-//        pay.setDate(this.convertirFecha(body.get("date"),"\\."));
-//        pay.setDescription(body.get("description")+"");
-//        pay.setEmailBuyer(body.get("email_buyer")+"");
-//        pay.setOperationDate(this.convertirFecha(body.get("operation_date"),"\\-"));
-//        pay.setPaymentMethod(Short.parseShort(body.get("payment_method")));
-//        pay.setPaymentMethodName(body.get("payment_method_name")+"");
-//        pay.setPaymentMethodType(Short.parseShort(body.get("payment_method")));
-//        pay.setPseBank(body.get("pse_bank")+"");
-//        Compra compra = compraService.encontrar(Long.parseLong(body.get("reference_sale"))).get();
-//        pay.setReferenceSale(compra);
-//        pay.setResponseMessagePol(body.get("response_message_pol"));
-//        pay.setShippingCountry(body.get("shipping_country"));
-//        pay.setTax(body.get("tax"));
-//        pay.setTransactionDate(this.convertirFecha(body.get("transaction_date"),"\\-"));
-//        pay.setTransactionId(body.get("transaction_id"));
-//        pay.setValue(Long.parseLong(body.get("value").split("\\.")[0]));
-//        return pay;
-//        
-//        log.info(pay.toString());
-//        
-//        pser.guardar(pay);
+         Transaccionp pay = new Transaccionp();
+        pay.setAttempts(Short.parseShort(body.get("attempts")));
+        pay.setBankId(Short.parseShort(body.get("bank_id")));
+        pay.setBillingCountry((body.get("billing_country"))+"");
+        pay.setCurrency(body.get("currency")+"");
+        pay.setDate(this.nexp.convertirFecha(body.get("date"),"\\."));
+        pay.setDescription(body.get("description")+"");
+        pay.setEmailBuyer(body.get("email_buyer")+"");
+        pay.setOperationDate((this.nexp.convertirFecha(body.get("operation_date"),"\\-")));
+        pay.setPaymentMethod(Short.parseShort(body.get("payment_method")));
+        pay.setPaymentMethodName(body.get("payment_method_name")+"");
+        pay.setPaymentMethodType(Short.parseShort(body.get("payment_method")));
+        pay.setPseBank(body.get("pse_bank")+"");
+        pay.setResponseMessagePol(body.get("response_message_pol"));
+        pay.setShippingCountry(body.get("shipping_country"));
+        pay.setTax(body.get("tax"));
+        pay.setTransactionDate(this.nexp.convertirFecha(body.get("transaction_date"),"\\-"));
+        pay.setTransactionId(body.get("transaction_id"));
+        pay.setValue(Long.parseLong(body.get("value").split("\\.")[0]));
+
+
+
+        Compra compra = compraService.encontrar(Long.parseLong(body.get("reference_sale"))).get();
+//        if(pay.getResponseMessagePol().equals("APPROVED") && pay.getValue()== (long)compra.getTotalCompra()){
+            if(pay.getValue()== (long)compra.getTotalCompra()){
+                pay.setReferenceSale(compra);
+            } else{
+            compraService.eliminar(compra.getIdCompra());
+            }
+
+
+        log.info(pay.toString());
+
+        pser.guardar(pay);
         return new ResponseEntity<>(body, HttpStatus.OK);
     }
 

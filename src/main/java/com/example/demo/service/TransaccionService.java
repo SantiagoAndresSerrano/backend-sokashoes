@@ -16,8 +16,8 @@ import java.util.Optional;
 public interface TransaccionService {
     
     public void guardar(Transaccionp transaccion);
-    public Transaccionp encontrar(int id);
+    public Transaccionp encontrar(String id);
     public List<Transaccionp> listar();
-    public void eliminar(int id);
+    public void eliminar(String id);
     
 }

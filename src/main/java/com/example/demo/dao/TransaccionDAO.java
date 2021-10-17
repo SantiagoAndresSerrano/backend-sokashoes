@@ -11,6 +11,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author Santi & Dani
  */
-public interface TransaccionDAO extends JpaRepository<Transaccionp, Integer>{
+public interface TransaccionDAO extends JpaRepository<Transaccionp, String>{
     
 }

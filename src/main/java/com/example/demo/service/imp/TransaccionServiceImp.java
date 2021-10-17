@@ -34,12 +34,12 @@ public class TransaccionServiceImp implements TransaccionService{
     }
 
     @Override
-    public void eliminar(int id) {
+    public void eliminar(String id) {
         pdao.deleteById(id);
     }
 
     @Override
-    public Transaccionp encontrar(int id) {
+    public Transaccionp encontrar(String id) {
         return pdao.findById(id).get();
     }
 

@@ -5,8 +5,11 @@
  */
 package com.example.demo.rest;
 
-import com.example.demo.model.Persona;
-import com.example.demo.service.PersonaService;
+import com.example.demo.model.Talla;
+import com.example.demo.model.Talla;
+import com.example.demo.model.Talla;
+import com.example.demo.service.TallaService;
+import com.example.demo.service.TallaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,42 +32,40 @@ import java.util.List;
 public class TallaRest {
 
     @Autowired
-    PersonaService pser;
+    TallaService tallaService;
 
     @GetMapping
-    public ResponseEntity<List<Persona>> getTalla() {
-        return ResponseEntity.ok(pser.listar());
+    public ResponseEntity<List<Talla>> getTalla() {
+        return ResponseEntity.ok(tallaService.listar());
+    }
+
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<?> encontrarTalla(@PathVariable int id) {
+        Talla Talla = tallaService.encontrar(id).orElse(null);
+        if (Talla == null) {
+            return new ResponseEntity<ObjectError>(new ObjectError("id","No existe el id"), HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(Talla);
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Persona> eliminarTalla(@PathVariable int id) {
+    public ResponseEntity<Talla> eliminarTalla(@PathVariable int id) {
 
-        Persona a = pser.encontrar(id).orElse(null);
+        Talla talla= tallaService.encontrar(id).orElse(null);
 
-        pser.eliminar(id);
+        tallaService.eliminar(id);
 
-        return ResponseEntity.ok(a);
+        return ResponseEntity.ok(talla);
     }
-    
-    @GetMapping(path = "/{id}")
-    public ResponseEntity<?> encontrarPersona(@PathVariable int id) {
 
-        Persona a = pser.encontrar(id).orElse(null);
-
-        if (a == null) {
-            return new ResponseEntity<ObjectError>(new ObjectError("id","No existe el id"), HttpStatus.NOT_FOUND);
-        }
-
-        return ResponseEntity.ok(a);
-    }
 
     @PostMapping
-    public ResponseEntity<?> guardar(@RequestBody @Valid Persona a, BindingResult br) {
+    public ResponseEntity<?> guardar(@RequestBody @Valid Talla a, BindingResult br) {
 
         if (br.hasErrors()) {
             return new ResponseEntity<List<ObjectError>>(br.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
-        pser.guardar(a);
+        tallaService.guardar(a);
         return ResponseEntity.ok(a);
     }
     

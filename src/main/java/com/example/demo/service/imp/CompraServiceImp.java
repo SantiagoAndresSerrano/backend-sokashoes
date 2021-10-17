@@ -33,6 +33,12 @@ public class CompraServiceImp implements CompraService {
     }
 
     @Override
+    @Transactional
+    public void eliminar(Long id) {
+        cDAO.deleteById(id);
+    }
+
+    @Override
     @Transactional(readOnly = true )
     public Optional<Compra> encontrar(Long id) {
         return cDAO.findById(id);
