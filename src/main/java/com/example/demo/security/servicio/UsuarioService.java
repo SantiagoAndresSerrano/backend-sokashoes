@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.demo.security.service;
+package com.example.demo.security.servicio;
 
 /**
  *
  * @author santi
  */
 
-import com.example.demo.security.entity.Usuario;
-import com.example.demo.security.repository.UsuarioRepository;
+import com.example.demo.security.model.Usuario;
+import com.example.demo.security.dao.UsuarioRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +31,7 @@ public class UsuarioService {
     }
 
     public boolean existsByNombreUsuario(String nombreUsuario){
+
         return usuarioRepository.existsByUsername(nombreUsuario);
     }
 
@@ -38,10 +39,6 @@ public class UsuarioService {
         return usuarioRepository.existsByEmail(email);
     }
 
-    public void save(Usuario usuario){
-        usuarioRepository.save(usuario);
-    }
-    
     
      @Transactional(readOnly = true)
     public boolean getExisteEmail(String email) {
@@ -53,16 +50,17 @@ public class UsuarioService {
         return usuarioRepository.existsByUsername(email);
     }
 
-
     @Transactional
     public Usuario findByEmail(String email) {
         return usuarioRepository.findByEmail(email).get();
     }
 
     @Transactional
-    public void guardar(Usuario usuario) {
+    public Usuario guardar(Usuario usuario) {
         usuarioRepository.save(usuario);
+        return usuario;
     }
+
 
     @Transactional
     public void eliminar(int id) {

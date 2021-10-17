@@ -3,10 +3,10 @@
   <persistence-unit name="com.example_demo_jar_0.0.1-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>com.example.demo.model.TipoIdentificacion</class>
-    <class>com.example.demo.security.entity.Usuario</class>
+    <class>com.example.demo.security.model.Usuario</class>
     <class>com.example.demo.model.Compra</class>
     <class>com.example.demo.model.DetalleCompra</class>
-    <class>com.example.demo.security.entity.Rol</class>
+    <class>com.example.demo.security.model.Rol</class>
     <class>com.example.demo.model.Persona</class>
     <class>com.example.demo.model.Categoria</class>
     <class>com.example.demo.model.Producto</class>

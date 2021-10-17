@@ -5,7 +5,7 @@
  */
 package com.example.demo.dao;
 
-import com.example.demo.security.entity.Usuario;
+import com.example.demo.security.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

@@ -5,7 +5,7 @@
  */
 package com.example.demo.dao;
 
-import com.example.demo.security.entity.Rol;
+import com.example.demo.security.model.Rol;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

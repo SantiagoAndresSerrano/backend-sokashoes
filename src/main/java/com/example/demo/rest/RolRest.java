@@ -5,8 +5,8 @@
  */
 package com.example.demo.rest;
 
-import com.example.demo.security.entity.Rol;
-import com.example.demo.security.service.RolService;
+import com.example.demo.security.model.Rol;
+import com.example.demo.security.servicio.RolService;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

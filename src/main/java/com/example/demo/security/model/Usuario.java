@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.demo.security.entity;
+package com.example.demo.security.model;
 
 /**
  *
@@ -32,7 +32,7 @@ public class Usuario {
     @NotNull
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"),
-    inverseJoinColumns = @JoinColumn(name = "rol_id"))
+            inverseJoinColumns = @JoinColumn(name = "rol_id"))
     private Set<Rol> roles = new HashSet<>();
     @OneToMany(mappedBy = "usuario")
     private Collection<Compra> compraCollection;
@@ -43,7 +43,7 @@ public class Usuario {
     }
 
     public Usuario(@NotNull String nombreUsuario, @NotNull String email, @NotNull String password) {
-      
+
         this.username = nombreUsuario;
         this.email = email;
         this.password = password;

@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.demo.security.service;
+package com.example.demo.security.servicio;
 
 /**
  *
  * @author santi
  */
 
-import com.example.demo.security.entity.Usuario;
-import com.example.demo.security.entity.UsuarioPrincipal;
+import com.example.demo.security.model.Usuario;
+import com.example.demo.security.model.UsuarioPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

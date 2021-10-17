@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.demo.security.repository;
+package com.example.demo.security.dao;
 
 /**
  *
@@ -11,7 +11,7 @@ package com.example.demo.security.repository;
  */
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.example.demo.security.entity.Usuario;
+import com.example.demo.security.model.Usuario;
 
 import java.util.Optional;
 

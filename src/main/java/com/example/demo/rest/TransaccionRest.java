@@ -9,7 +9,7 @@ package com.example.demo.rest;
 import com.example.demo.model.Compra;
 import com.example.demo.model.Transaccionp;
 import com.example.demo.negocio.NorteXploradores;
-import com.example.demo.security.service.UsuarioService;
+import com.example.demo.security.servicio.UsuarioService;
 import java.util.Map;
 
 import com.example.demo.service.CompraService;

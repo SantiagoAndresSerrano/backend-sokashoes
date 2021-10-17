@@ -9,7 +9,7 @@ package com.example.demo.security.jwt;
  *
  * @author santi
  */
-import com.example.demo.security.service.UserDetailServiceImp;
+import com.example.demo.security.servicio.UserDetailServiceImp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

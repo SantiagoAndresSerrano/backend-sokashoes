@@ -7,8 +7,8 @@ package com.example.demo.rest;
 
 import com.example.demo.model.Compra;
 import com.example.demo.negocio.NorteXploradores;
-import com.example.demo.security.entity.Usuario;
-import com.example.demo.security.service.UsuarioService;
+import com.example.demo.security.model.Usuario;
+import com.example.demo.security.servicio.UsuarioService;
 import java.util.List;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;

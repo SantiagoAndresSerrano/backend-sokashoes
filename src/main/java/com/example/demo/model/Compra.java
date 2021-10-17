@@ -5,7 +5,7 @@
  */
 package com.example.demo.model;
 
-import com.example.demo.security.entity.Usuario;
+import com.example.demo.security.model.Usuario;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;

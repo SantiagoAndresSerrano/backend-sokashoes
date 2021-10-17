@@ -11,11 +11,10 @@ package com.example.demo.security;
  */
 import com.example.demo.security.jwt.JwtEntryPoint;
 import com.example.demo.security.jwt.JwtTokenFilter;
-import com.example.demo.security.service.UserDetailServiceImp;
+import com.example.demo.security.servicio.UserDetailServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;

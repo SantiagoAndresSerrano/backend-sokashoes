@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.demo.security.service;
+package com.example.demo.security.servicio;
 
 /**
  *
  * @author santi
  */
 
-import com.example.demo.security.entity.Rol;
-import com.example.demo.security.entity.Rol.RolNombre;
-import com.example.demo.security.repository.RolRepository;
+import com.example.demo.security.model.Rol;
+import com.example.demo.security.model.Rol.RolNombre;
+import com.example.demo.security.dao.RolRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

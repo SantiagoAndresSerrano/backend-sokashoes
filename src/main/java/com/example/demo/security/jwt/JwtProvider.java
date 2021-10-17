@@ -9,7 +9,7 @@ package com.example.demo.security.jwt;
  *
  * @author santi
  */
-import com.example.demo.security.entity.UsuarioPrincipal;
+import com.example.demo.security.model.UsuarioPrincipal;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

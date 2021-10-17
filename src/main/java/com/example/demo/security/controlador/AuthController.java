@@ -3,16 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.demo.security.controller;
-
+package com.example.demo.security.controlador;
 import com.example.demo.security.dto.JwtDto;
 import com.example.demo.security.dto.LoginUsuario;
 import com.example.demo.security.dto.NuevoUsuario;
-import com.example.demo.security.entity.Rol;
-import com.example.demo.security.entity.Rol.RolNombre;
 import com.example.demo.security.jwt.JwtProvider;
-import com.example.demo.security.service.RolService;
-import com.example.demo.security.service.UsuarioService;
+import com.example.demo.security.model.Rol;
+import com.example.demo.security.model.Rol.RolNombre;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,8 +28,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.Set;
-import lombok.extern.slf4j.Slf4j;
-import com.example.demo.security.entity.Usuario;
+
+import com.example.demo.security.model.Usuario;
+import com.example.demo.security.servicio.RolService;
+import com.example.demo.security.servicio.UsuarioService;
 /**
  *
  * @author santi
@@ -74,7 +73,7 @@ public class AuthController {
         if(nuevoUsuario.getRoles().contains("admin"))
             roles.add(rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get());
         usuario.setRoles(roles);
-        usuarioService.save(usuario);
+        usuarioService.guardar(usuario);
         return new ResponseEntity(("usuario guardado"), HttpStatus.CREATED);
     }
 
