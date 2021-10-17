@@ -5,6 +5,7 @@
  */
 package com.example.demo.rest;
 
+import com.example.demo.model.Carrito;
 import com.example.demo.model.Compra;
 import com.example.demo.negocio.NorteXploradores;
 import com.example.demo.security.model.Usuario;
@@ -75,18 +76,28 @@ public class UsuarioRest {
         return ResponseEntity.ok(u);
     }
   
-//    @GetMapping(path = "/{id}/paquetes")
-//    public ResponseEntity<List<Compra>> paquetesPorUsuario(@PathVariable int id){
-//        return ResponseEntity.ok((List)user.encontrar(id).get().compraCollection());
-//    }
+    @GetMapping(path = "/{id}/compras")
+    public ResponseEntity<List<Compra>> paquetesPorUsuario(@PathVariable int id){
+        return ResponseEntity.ok((List)user.encontrar(id).get().compraCollection());
+    }
 
-//    @GetMapping(path = "/{id}/paquetesComprados")
-//    public ResponseEntity<List<Compra>> paquetesCompradosPorUsuario(@PathVariable int id){
-//
-//        List<Compra> soloComprados = nexp.paquetesComprados((List)user.encontrar(id).get().compraCollection());
-//
-//        return ResponseEntity.ok(soloComprados);
-//    }
+    @GetMapping(path = "/{id}/carrito")
+    public ResponseEntity<List<Carrito>> carritoDeUsuario(@PathVariable int id){
+        return ResponseEntity.ok((List)user.encontrar(id).get().carritoCollection());
+    }
+
+
+    @GetMapping(path = "/{username}/username")
+    public ResponseEntity<?> usuarioPorUsername(@PathVariable String username){
+        Usuario u = user.getByNombreUsuario(username).orElse(null);
+
+        if(u==null){
+            return new ResponseEntity<>("Usuario no encontrado",HttpStatus.NOT_FOUND);
+        }
+
+        return ResponseEntity.ok(u);
+    }
+
 
     
     

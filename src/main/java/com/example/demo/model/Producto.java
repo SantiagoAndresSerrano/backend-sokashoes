@@ -23,7 +23,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -39,18 +38,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Producto.findByDescripcion", query = "SELECT p FROM Producto p WHERE p.descripcion = :descripcion"),
     @NamedQuery(name = "Producto.findByMarca", query = "SELECT p FROM Producto p WHERE p.marca = :marca")})
 public class Producto implements Serializable {
-
-    @Size(max = 25)
-    @Column(name = "modelo")
-    private String modelo;
-    @Size(max = 50)
-    @Column(name = "descripcion")
-    private String descripcion;
-    @Size(max = 25)
-    @Column(name = "marca")
-    private String marca;
-    @OneToMany(mappedBy = "producto")
-    private Collection<Carrito> carritoCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -74,7 +61,18 @@ public class Producto implements Serializable {
     private Collection<DetalleCompra> detalleCompraCollection;
     @Column(name = "url_img")
     private String urlImg;
-
+    @Size(max = 25)
+    @Column(name = "modelo")
+    private String modelo;
+    @Size(max = 50)
+    @Column(name = "descripcion")
+    private String descripcion;
+    @Size(max = 25)
+    @JoinColumn(name = "marca", referencedColumnName = "id_marca")
+    @ManyToOne
+    private Marca marca;
+    @OneToMany(mappedBy = "producto")
+    private Collection<Carrito> carritoCollection;
 
     public Producto() {
     }
@@ -139,27 +137,11 @@ public class Producto implements Serializable {
         this.detalleCompraCollection = detalleCompraCollection;
     }
 
-    public String getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public String getMarca() {
+    public Marca getMarca() {
         return marca;
     }
 
-    public void setMarca(String marca) {
+    public void setMarca(Marca marca) {
         this.marca = marca;
     }
 
@@ -194,6 +176,22 @@ public class Producto implements Serializable {
     @Override
     public String toString() {
         return "com.example.demo.model.Producto[ idProducto=" + idProducto + " ]";
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
 }

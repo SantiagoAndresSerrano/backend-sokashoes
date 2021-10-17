@@ -16,22 +16,12 @@ import java.util.Set;
 
 public class NuevoUsuario {
     @NotBlank
-    private String nombre;
-    @NotBlank
     private String nombreUsuario;
     @Email
     private String email;
     @NotBlank
     private String password;
     private Set<String> roles = new HashSet<>();
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
 
     public String getNombreUsuario() {
         return nombreUsuario;
