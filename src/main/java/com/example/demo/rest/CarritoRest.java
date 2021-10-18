@@ -7,7 +7,10 @@ package com.example.demo.rest;
 
 import com.example.demo.model.Carrito;
 import com.example.demo.model.Categoria;
+import com.example.demo.security.model.Usuario;
+import com.example.demo.security.servicio.UsuarioService;
 import com.example.demo.service.CarritoService;
+import com.example.demo.service.ProductoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,6 +34,12 @@ public class CarritoRest {
 
     @Autowired
     CarritoService cser;
+
+    @Autowired
+    UsuarioService usu;
+
+    @Autowired
+    ProductoService productoService;
 
     @GetMapping
     public ResponseEntity<List<Carrito>> getCarrito() {
@@ -59,8 +68,10 @@ public class CarritoRest {
     @PostMapping
     public ResponseEntity<?> guardar(@RequestBody @Valid Carrito c, BindingResult br) {
         if (br.hasErrors()) {
+
             return new ResponseEntity<List<ObjectError>>(br.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
+        c.setProducto(this.productoService.encontrar(c.getProducto().getIdProducto()).get());
         cser.guardar(c);
         return ResponseEntity.ok(c);
     }
