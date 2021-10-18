@@ -45,6 +45,17 @@ public class ColorRest {
         cser.eliminar(id);
         return ResponseEntity.ok(color);
     }
+
+    @GetMapping(path = "/{id}/cantidad")
+    public ResponseEntity<Integer> cantidadPorColor(@PathVariable String id){
+        Color color = cser.encontrar(id).orElse(null);
+        if (color == null) {
+            //return new ResponseEntity<ObjectError>(new ObjectError("id","No existe el id"), HttpStatus.NOT_FOUND);
+        }
+        int cantidad = color.productoCollection().size();
+        log.info(cantidad + "");
+        return ResponseEntity.ok(5);
+    }
     
     @GetMapping(path = "/{id}")
     public ResponseEntity<?> encontrarColor(@PathVariable String id) {

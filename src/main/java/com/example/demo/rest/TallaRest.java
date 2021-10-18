@@ -5,6 +5,7 @@
  */
 package com.example.demo.rest;
 
+import com.example.demo.model.Marca;
 import com.example.demo.model.Talla;
 import com.example.demo.model.Talla;
 import com.example.demo.model.Talla;
@@ -68,6 +69,14 @@ public class TallaRest {
         tallaService.guardar(a);
         return ResponseEntity.ok(a);
     }
-    
+
+    @GetMapping(path = "/{id}/cantidad")
+    public ResponseEntity<?> cantidadPorTalla(@PathVariable int id){
+        Talla talla = tallaService.encontrar(id).orElse(null);
+        if (talla == null) {
+            return new ResponseEntity<ObjectError>(new ObjectError("id","No existe el id"), HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(talla.productoCollection().size());
+    }
     
 }
