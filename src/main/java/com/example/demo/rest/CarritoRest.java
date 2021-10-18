@@ -71,6 +71,14 @@ public class CarritoRest {
 
             return new ResponseEntity<List<ObjectError>>(br.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
+        Usuario u = usu.encontrar(c.getUsuario().getId_Usuario()).orElse(null);
+
+        for(Carrito carrito: u.carritoCollection()){
+            if(carrito.getProducto().getIdProducto() == c.getProducto().getIdProducto()){
+                return ResponseEntity.ok(c);
+            }
+        }
+
         c.setProducto(this.productoService.encontrar(c.getProducto().getIdProducto()).get());
         cser.guardar(c);
         return ResponseEntity.ok(c);
