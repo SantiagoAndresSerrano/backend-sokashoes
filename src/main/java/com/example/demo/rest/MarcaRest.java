@@ -5,10 +5,7 @@
  */
 package com.example.demo.rest;
 
-import com.example.demo.model.Categoria;
-import com.example.demo.model.Marca;
-import com.example.demo.model.Producto;
-import com.example.demo.model.Transaccionp;
+import com.example.demo.model.*;
 import com.example.demo.service.MarcaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +28,11 @@ import javax.validation.Valid;
 public class MarcaRest {
     
     @Autowired
-    MarcaService cser;
+    MarcaService mser;
     
     @GetMapping
     public ResponseEntity<List<Marca>> getMarca() {
-        return ResponseEntity.ok(cser.listar());
+        return ResponseEntity.ok(mser.listar());
     }
 
     @PostMapping
@@ -44,8 +41,17 @@ public class MarcaRest {
         if (br.hasErrors()) {
             return new ResponseEntity<List<ObjectError>>(br.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
-        cser.guardar(p);
+        mser.guardar(p);
         return ResponseEntity.ok(p);
+    }
+
+    @GetMapping(path = "/{id}/cantidad")
+    public ResponseEntity<?> cantidadMarca(@PathVariable int id) {
+        Marca marca = mser.encontrar(id).orElse(null);
+        if (marca == null) {
+            return new ResponseEntity<ObjectError>(new ObjectError("id","No existe el id"), HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok( marca.productoCollection().size());
     }
 
 }
