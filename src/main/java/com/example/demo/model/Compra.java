@@ -43,7 +43,7 @@ public class Compra implements Serializable {
     @Column(name = "total_compra")
     private Integer totalCompra;
     @Column(name = "estado")
-    private Integer estado;
+    private String estado;
     @JoinColumn(name = "usuario", referencedColumnName = "id_usuario")
     @ManyToOne
     private Usuario usuario;
@@ -71,11 +71,11 @@ public class Compra implements Serializable {
         return totalCompra;
     }
 
-    public Integer getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(Integer estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
