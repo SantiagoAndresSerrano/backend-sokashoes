@@ -53,4 +53,16 @@ public class CompraRest {
 
         return ResponseEntity.ok((List)cser.encontrar(id).get());
     }
+
+    @GetMapping(path = "/preciototal")
+    public ResponseEntity<?> getPrecioPorCompra() {
+        List<Compra> compras = cser.listar();
+        int cantidad = 0;
+        for (int i = 0; i < compras.size(); i++) {
+            if(compras.get(i).getEstado().equals("APROBADO")){
+                cantidad += compras.get(i).getTotalCompra();
+            }
+        }
+        return ResponseEntity.ok(cantidad);
+    }
 }
