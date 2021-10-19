@@ -42,6 +42,8 @@ public class Compra implements Serializable {
     private Long idCompra;
     @Column(name = "total_compra")
     private Integer totalCompra;
+    @Column(name = "estado")
+    private Integer estado;
     @JoinColumn(name = "usuario", referencedColumnName = "id_usuario")
     @ManyToOne
     private Usuario usuario;
@@ -67,6 +69,14 @@ public class Compra implements Serializable {
 
     public Integer getTotalCompra() {
         return totalCompra;
+    }
+
+    public Integer getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Integer estado) {
+        this.estado = estado;
     }
 
     public void setTotalCompra(Integer totalCompra) {
