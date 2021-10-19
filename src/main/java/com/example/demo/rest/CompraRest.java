@@ -9,8 +9,12 @@ import com.example.demo.model.Categoria;
 import com.example.demo.model.Compra;
 import com.example.demo.model.Producto;
 import com.example.demo.model.Transaccionp;
+import com.example.demo.security.model.Usuario;
+import com.example.demo.security.servicio.UsuarioService;
 import com.example.demo.service.CompraService;
 import java.util.List;
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,22 +32,29 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/compra")
 @CrossOrigin(origins = "*")
+@Slf4j
 public class CompraRest {
     
     @Autowired
     CompraService cser;
-    
+
+    @Autowired
+    UsuarioService usuarioService;
+
     @GetMapping
     public ResponseEntity<List<Compra>> getCompra() {
         return ResponseEntity.ok(cser.listar());
     }
 
-    @PostMapping
-    public ResponseEntity<?> guardar(@RequestBody @Valid Compra p, BindingResult br) {
+    @PostMapping(path = "/{idUsuario}")
+    public ResponseEntity<?> guardar(@RequestBody @Valid Compra p, BindingResult br,@PathVariable int idUsuario) {
 
         if (br.hasErrors()) {
             return new ResponseEntity<List<ObjectError>>(br.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
+        Usuario usuario = usuarioService.encontrar(idUsuario).get();
+        log.info(usuario.toString()+"=====");
+        p.setUsuario(usuario);
         cser.guardar(p);
         return ResponseEntity.ok(p);
     }
