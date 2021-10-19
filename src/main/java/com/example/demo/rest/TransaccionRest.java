@@ -87,7 +87,7 @@ public class TransaccionRest {
         pay.setTransactionId(body.get("transaction_id"));
         pay.setValue(Long.parseLong(body.get("value").split("\\.")[0]));
 
-
+        log.info(pay.toString()+"======");
         Compra compra = compraService.encontrar(Long.parseLong(body.get("reference_sale"))).get();
         if (pay.getResponseMessagePol().equals("APPROVED") && pay.getValue() == (long) compra.getTotalCompra()) {
             if (pay.getValue() == (long) compra.getTotalCompra()) {

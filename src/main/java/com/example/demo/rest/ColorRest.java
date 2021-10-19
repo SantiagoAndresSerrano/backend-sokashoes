@@ -53,8 +53,7 @@ public class ColorRest {
             //return new ResponseEntity<ObjectError>(new ObjectError("id","No existe el id"), HttpStatus.NOT_FOUND);
         }
         int cantidad = color.productoCollection().size();
-        log.info(cantidad + "");
-        return ResponseEntity.ok(5);
+        return ResponseEntity.ok(cantidad);
     }
     
     @GetMapping(path = "/{id}")
