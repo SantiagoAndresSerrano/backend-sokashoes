@@ -14,6 +14,7 @@ public class PlayGround {
         roles.add(new Rol(Rol.RolNombre.ROLE_USER,1));
         roles.add(new Rol(Rol.RolNombre.ROLE_ADMIN,2));
         System.out.println(roles.toString());
-        System.out.println(roles.contains(new Rol(Rol.RolNombre.ROLE_USER,1)));
+        System.out.println(roles.contains(new Rol(Rol.RolNombre.ROLE_USER)));
+
     }
 }

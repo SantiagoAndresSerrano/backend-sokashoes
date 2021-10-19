@@ -102,20 +102,20 @@ public class UsuarioRest {
 
         return ResponseEntity.ok(u);
     }
-//Nom funciona
-//    @GetMapping(path = "/cantidadclientes")
-//    public ResponseEntity<?> getClientesRegistrados() {
-//        List<Usuario> usuarios = user.listar();
-//        int cantidad = 0;
-//        Rol robj = new Rol(Rol.RolNombre.ROLE_ADMIN);
-//        for (int i = 0; i < usuarios.size(); i++) {
-//            Set<Rol> roles = usuarios.get(i).getRoles();
-//           if(!roles.contains(robj)){
-//               cantidad++;
-//           }
-//        }
-//        return ResponseEntity.ok(cantidad);
-//    }
+
+    @GetMapping(path = "/cantidadclientes")
+    public ResponseEntity<?> getClientesRegistrados() {
+        List<Usuario> usuarios = user.listar();
+        int cantidad = 0;
+        //Rol robj = new Rol(Rol.RolNombre.ROLE_ADMIN);
+        for (int i = 0; i < usuarios.size(); i++) {
+            //Set<Rol> roles = usuarios.get(i).getRoles();
+           if(!usuarios.get(i).getUsername().equals("Admin")){
+               cantidad++;
+           }
+        }
+        return ResponseEntity.ok(cantidad);
+    }
 
     
     
