@@ -19,6 +19,8 @@ public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idRol;
+
+
     public enum RolNombre {
     ROLE_ADMIN, ROLE_USER
 }
@@ -32,6 +34,11 @@ public class Rol {
 
     public Rol(@NotNull RolNombre rolNombre) {
         this.rolNombre = rolNombre;
+    }
+
+    public Rol(@NotNull RolNombre rolNombre, int id) {
+        this.rolNombre = rolNombre;
+        this.idRol = id;
     }
 
     public int getId() {

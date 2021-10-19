@@ -7,10 +7,15 @@ package com.example.demo.rest;
 
 import com.example.demo.model.Carrito;
 import com.example.demo.model.Compra;
+import com.example.demo.model.Producto;
 import com.example.demo.negocio.NorteXploradores;
+import com.example.demo.security.model.Rol;
 import com.example.demo.security.model.Usuario;
 import com.example.demo.security.servicio.UsuarioService;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,7 +102,20 @@ public class UsuarioRest {
 
         return ResponseEntity.ok(u);
     }
-
+//Nom funciona
+//    @GetMapping(path = "/cantidadclientes")
+//    public ResponseEntity<?> getClientesRegistrados() {
+//        List<Usuario> usuarios = user.listar();
+//        int cantidad = 0;
+//        Rol robj = new Rol(Rol.RolNombre.ROLE_ADMIN);
+//        for (int i = 0; i < usuarios.size(); i++) {
+//            Set<Rol> roles = usuarios.get(i).getRoles();
+//           if(!roles.contains(robj)){
+//               cantidad++;
+//           }
+//        }
+//        return ResponseEntity.ok(cantidad);
+//    }
 
     
     

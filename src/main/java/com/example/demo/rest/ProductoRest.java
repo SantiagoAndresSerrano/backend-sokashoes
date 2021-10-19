@@ -89,5 +89,14 @@ public class ProductoRest {
         return ResponseEntity.ok(p);
     }
 
-    
+    @GetMapping(path = "/cantidadDisponible")
+    public ResponseEntity<?> getProductosDisponibles() {
+        List<Producto> productos = pser.listar();
+        int cantidad = 0;
+        for (int i = 0; i < productos.size(); i++) {
+            cantidad += productos.get(i).getCantidad();
+        }
+        return ResponseEntity.ok(cantidad);
+    }
+
 }

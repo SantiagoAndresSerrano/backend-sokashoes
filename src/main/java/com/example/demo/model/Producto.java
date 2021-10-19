@@ -57,6 +57,8 @@ public class Producto implements Serializable {
     private Categoria categoria;
     @Column(name = "precio")
     private int precio;
+    @Column(name = "cantidad")
+    private int cantidad;
     @OneToMany(mappedBy = "producto")
     private Collection<DetalleCompra> detalleCompraCollection;
     @Column(name = "url_img")
@@ -135,6 +137,14 @@ public class Producto implements Serializable {
 
     public void setDetalleCompraCollection(Collection<DetalleCompra> detalleCompraCollection) {
         this.detalleCompraCollection = detalleCompraCollection;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
     public Marca getMarca() {
