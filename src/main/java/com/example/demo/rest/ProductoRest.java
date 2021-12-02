@@ -63,10 +63,10 @@ public class ProductoRest {
             return new ResponseEntity<List<ObjectError>>(br.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
         Producto producto = pser.encontrar(p.getIdProducto()).orElse(null);
-        if(producto ==null){
+        if(producto == null){
             return new ResponseEntity("Producto no existe",HttpStatus.NOT_FOUND);
         }
-        pser.guardar(p);
+        pser.guardar(producto);
         return ResponseEntity.ok(pser.encontrar(p.getIdProducto()));
     }
 
