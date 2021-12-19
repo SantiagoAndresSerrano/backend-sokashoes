@@ -99,4 +99,14 @@ public class ProductoRest {
         return ResponseEntity.ok(cantidad);
     }
 
+    @GetMapping(path = "/{id}/deshabilitar")
+    public ResponseEntity<?> deshabilitar(@PathVariable int id) {
+        Producto p = pser.encontrar(id).orElse(null);
+        p.setEstado(false);
+        pser.guardar(p);
+        return ResponseEntity.ok(p);
+    }
+
+
+
 }

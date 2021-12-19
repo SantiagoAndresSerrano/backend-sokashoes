@@ -69,6 +69,8 @@ public class Producto implements Serializable {
     @Size(max = 50)
     @Column(name = "descripcion")
     private String descripcion;
+    @Column(name = "estado")
+    private boolean estado;
     @Size(max = 25)
     @JoinColumn(name = "marca", referencedColumnName = "id_marca")
     @ManyToOne
@@ -77,6 +79,14 @@ public class Producto implements Serializable {
     private Collection<Carrito> carritoCollection;
 
     public Producto() {
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
     public Producto(Integer idProducto) {
