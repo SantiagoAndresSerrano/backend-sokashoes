@@ -106,6 +106,13 @@ public class ProductoRest {
         pser.guardar(p);
         return ResponseEntity.ok(p);
     }
+    @GetMapping(path = "/{id}/habilitar")
+    public ResponseEntity<?> habilitar(@PathVariable int id) {
+        Producto p = pser.encontrar(id).orElse(null);
+        p.setEstado(true);
+        pser.guardar(p);
+        return ResponseEntity.ok(p);
+    }
 
 
 
