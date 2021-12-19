@@ -66,7 +66,7 @@ public class ProductoRest {
         if(producto == null){
             return new ResponseEntity("Producto no existe",HttpStatus.NOT_FOUND);
         }
-        pser.guardar(producto);
+        pser.guardar(p);
         return ResponseEntity.ok(pser.encontrar(p.getIdProducto()));
     }
 
